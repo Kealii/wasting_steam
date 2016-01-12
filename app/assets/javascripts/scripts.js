@@ -11,7 +11,7 @@
             top: 200
         }
     });
-    
+
     new WOW().init();
     
     $('a.page-scroll').bind('click', function(event) {
