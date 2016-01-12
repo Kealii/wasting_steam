@@ -4,9 +4,7 @@
       <h1 class="cursive">Stop Wasting Your Energy</h1>
       <h4>Get back to what matters with better spending habits.</h4>
       <hr>
-      <% if current_user %>
-        <p>Hello, <%= current_user.user_name %></p>
-      <% else %>
+      <% if !current_user %>
         <a href="/auth/twitter" id="login" class="btn btn-primary btn-xl">Login with Twitter</a>
       <% end %>
     </div>
