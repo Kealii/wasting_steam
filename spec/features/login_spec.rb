@@ -26,4 +26,12 @@ feature 'testing oauth' do
     expect(page).to     have_content('Login')
   end
 
+  scenario 'login with bad steam credentials' do
+    login_with_bad_credentials
+    visit login_path
+
+    expect(current_path).to eq(root_path)
+    # expect(current_path).to have_content("Invalid Credentials. Please Try Again.")
+  end
+
 end

@@ -28,3 +28,11 @@ def stub_omniauth
       }
   )
 end
+
+def login_with_bad_credentials
+  OmniAuth.config.on_failure = Proc.new { |env|
+    OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+  }
+  OmniAuth.config.mock_auth[:steam] = nil
+  OmniAuth.config.mock_auth[:steam] = :invalid_credentials
+end
