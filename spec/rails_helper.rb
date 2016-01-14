@@ -15,3 +15,16 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 end
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:steam] = OmniAuth::AuthHash.new(
+      {
+          provider: 'steam',
+          uid: '1',
+          info: {
+              nickname: 'Testing Steam'
+          }
+      }
+  )
+end
