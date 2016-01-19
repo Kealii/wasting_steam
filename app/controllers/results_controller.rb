@@ -14,9 +14,7 @@ class ResultsController < ApplicationController
     games    = JSON.load(response)['response']['games']
     if games
       games.each do |game|
-        if game['playtime_forever'] < 5
-          @unplayed_ids << game['appid']
-        end
+        @unplayed_ids << game['appid'] if game['playtime_forever'] < 5
       end
     end
   end
