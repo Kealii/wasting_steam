@@ -1,5 +1,15 @@
 <h1>Waste - <%= number_to_currency(@wasted_money / 100) %></h1>
 <h1>Unplayed Games - <%= @names.count %></h1>
-<% @names.each do |name| %>
-  <h3><%= name %></h3>
+
+<table class="table">
+    <tr>
+      <th>Game Name</th>
+      <th>Cost</th>
+    </tr>
+  <% @names.each do |name| %>
+    <tr>
+      <td><%= name %></td>
+      <td>Cost</td>
+    </tr>
   <% end %>
+</table>
