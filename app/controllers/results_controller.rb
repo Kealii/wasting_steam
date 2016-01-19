@@ -33,22 +33,24 @@ class ResultsController < ApplicationController
       url      = URI.parse("https://store.steampowered.com/api/appdetails/?appids=#{id}")
       response = Net::HTTP::get(url)
       game = JSON.load(response)["#{id}"]
-      if game['data']['name']
-        @names << game['data']['name']
-      end
-      if game['data']['price_overview']
-        @wasted_money += game['data']['price_overview']['initial']
-        @cost << game['data']['price_overview']['initial']
-      end
-      if game['data']['header_image']
-        @images << game['data']['header_image']
-      end
-      if game['data']['genres']
-        @genres << game['data']['genres'].first['description']
-      end
-      if game['data']['metacritic']
-        @scores << game['data']['metacritic']['score']
-        @critics << game['data']['metacritic']['url']
+      if game['data']
+        if game['data']['name']
+          @names << game['data']['name']
+        end
+        if game['data']['price_overview']
+          @wasted_money += game['data']['price_overview']['initial']
+          @cost << game['data']['price_overview']['initial']
+        end
+        if game['data']['header_image']
+          @images << game['data']['header_image']
+        end
+        if game['data']['genres']
+          @genres << game['data']['genres'].first['description']
+        end
+        if game['data']['metacritic']
+          @scores << game['data']['metacritic']['score']
+          @critics << game['data']['metacritic']['url']
+        end
       end
     end
     @games = @unplayed_ids.zip(@images, @names, @cost, @genres, @scores, @critics)
