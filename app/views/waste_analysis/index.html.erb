@@ -1,2 +1,11 @@
-<h1>Hello <%= @user.steam_name %></h1>
-<%= link_to 'Click Here To Analyze Your Wasted Steam', results_path %>
+<br>
+<div class="container">
+  <div class="well">
+    <h1 class="text-center">Hello <%= @user.steam_name %></h1>
+    <br>
+    <div class="text-center">
+      <%= link_to 'Click Here To Analyze Your Wasted Steam', results_path, class: 'btn btn-default' %>
+    </div>
+    <br>
+  </div>
+</div>
