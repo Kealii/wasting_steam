@@ -12,9 +12,11 @@ class ResultsController < ApplicationController
     url      = URI.parse("http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=#{ENV['STEAM_API_KEY']}&steamid=#{current_user.uid}&format=json")
     response = Net::HTTP::get(url)
     games    = JSON.load(response)['response']['games']
-    games.each do |game|
-      if game['playtime_forever'] < 5
-        @unplayed_ids << game['appid']
+    if games
+      games.each do |game|
+        if game['playtime_forever'] < 5
+          @unplayed_ids << game['appid']
+        end
       end
     end
   end
