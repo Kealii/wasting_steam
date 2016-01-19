@@ -24,6 +24,8 @@ class ResultsController < ApplicationController
     @images       = []
     @cost         = []
     @genres       = []
+    @scores       = []
+    @critics      = []
     @wasted_money = 0
     @unplayed_ids.each do |id|
       url      = URI.parse("https://store.steampowered.com/api/appdetails/?appids=#{id}")
@@ -42,8 +44,12 @@ class ResultsController < ApplicationController
       if game['data']['genres']
         @genres << game['data']['genres'].first['description']
       end
+      if game['data']['metacritic']
+        @scores << game['data']['metacritic']['score']
+        @critics << game['data']['metacritic']['url']
+      end
     end
-    @games = @unplayed_ids.zip(@images, @names, @cost, @genres)
+    @games = @unplayed_ids.zip(@images, @names, @cost, @genres, @scores, @critics)
   end
 
 end

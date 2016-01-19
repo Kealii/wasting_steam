@@ -15,7 +15,7 @@
       <td><%= game[2] %></td>
       <td><%= number_to_currency( game[3] / 100.0 ) %></td>
       <td><%= game[4] %></td>
-      <td>Metacritic</td>
+      <td><%= link_to game[5], game[6] %></td>
     </tr>
   <% end %>
 </table>
