@@ -1,21 +1,30 @@
-<h1 class="text-center">Waste - <%= number_to_currency(@wasted_money / 100.0) %></h1>
-<h2 class="text-center">Unplayed Games - <%= @names.count %></h2>
 <br>
-<table class="table">
-    <tr>
-      <th></th>
-      <th>Game</th>
-      <th>Cost</th>
-      <th>Genre</th>
-      <th>Metacritic</th>
-    </tr>
-  <% @games.each do |game| %>
-    <tr>
-      <td><%= image_tag( game[1], size: '300x100' ) %></td>
-      <td><%= game[2] %></td>
-      <td><%= number_to_currency( game[3] / 100.0 ) %></td>
-      <td><%= game[4] %></td>
-      <td><%= link_to game[5], game[6] %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <div class="well" id="disclaimer">
+    <h4 class="text-center">Disclaimer:</h4>
+    <div class="text-center">
+      When calculating your total waste, this app does not factor in games received as gifts, multi-game bundles, or games purchased on sale.
+    </div>
+  </div>
+  <h1 class="text-center">Waste - <%= number_to_currency(@wasted_money / 100.0) %></h1>
+  <h2 class="text-center">Unplayed Games - <%= @names.count %></h2>
+  <br>
+  <table class="table">
+      <tr>
+        <th></th>
+        <th>Game</th>
+        <th>Cost</th>
+        <th>Genre</th>
+        <th>Metacritic</th>
+      </tr>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= image_tag( game[1], size: '300x100' ) %></td>
+        <td><%= game[2] %></td>
+        <td><%= number_to_currency( game[3] / 100.0 ) %></td>
+        <td><%= game[4] %></td>
+        <td><%= link_to game[5], game[6] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
