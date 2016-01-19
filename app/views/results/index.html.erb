@@ -1,15 +1,21 @@
-<h1>Waste - <%= number_to_currency(@wasted_money / 100) %></h1>
-<h1>Unplayed Games - <%= @names.count %></h1>
-
+<h1 class="text-center">Waste - <%= number_to_currency(@wasted_money / 100) %></h1>
+<h2 class="text-center">Unplayed Games - <%= @names.count %></h2>
+<br>
 <table class="table">
     <tr>
-      <th>Game Name</th>
+      <th>Header Image</th>
+      <th>Game</th>
+      <th>Genre</th>
       <th>Cost</th>
+      <th>Metacritic</th>
     </tr>
   <% @names.each do |name| %>
     <tr>
+      <td>Header Image</td>
       <td><%= name %></td>
+      <td>Genre</td>
       <td>Cost</td>
+      <td>Metacritic</td>
     </tr>
   <% end %>
 </table>
