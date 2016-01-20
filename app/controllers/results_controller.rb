@@ -2,7 +2,9 @@ class ResultsController < ApplicationController
   def index
     if current_user
       find_games
-      find_prices
+      if @unplayed_ids
+        find_prices
+      end
     end
   end
 
