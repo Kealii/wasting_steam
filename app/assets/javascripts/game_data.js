@@ -10,7 +10,6 @@ var getDataForGames = function getDataForGames(gameIds) {
     var table = $('#games tbody');
 
     gameIds.forEach(function(value) {
-
         $.get("/results/"+value, function(data) {
             addWastedMoney(data.cost);
             $('#waste').text(wastedMoney);

@@ -31,7 +31,6 @@ feature 'testing oauth' do
     visit login_path
 
     expect(current_path).to eq(root_path)
-    # expect(current_path).to have_content("Invalid Credentials. Please Try Again.")
   end
 
 end

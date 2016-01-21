@@ -27,6 +27,11 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'vcr', '~> 3.0', '>= 3.0.1'
+  gem 'webmock'
+end
+
 group :production do
   gem 'rails_12factor'
   gem 'skylight', '~> 0.10.2'

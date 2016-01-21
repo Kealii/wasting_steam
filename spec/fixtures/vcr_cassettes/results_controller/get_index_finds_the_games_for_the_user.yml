@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?format=json&key=D493BF5B312B282EA43CABDFFA24CCE4&steamid=76561198199856987
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.steampowered.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Eresult:
+      - '1'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Thu, 21 Jan 2016 06:43:27 GMT
+      Date:
+      - Thu, 21 Jan 2016 06:43:27 GMT
+      Content-Length:
+      - '462'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"response\": {\n\t\t\"game_count\": 7,\n\t\t\"games\": [\n\t\t\t{\n\t\t\t\t\"appid\":
+        1500,\n\t\t\t\t\"playtime_forever\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        1510,\n\t\t\t\t\"playtime_forever\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        1520,\n\t\t\t\t\"playtime_forever\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        1530,\n\t\t\t\t\"playtime_forever\": 0\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        233450,\n\t\t\t\t\"playtime_forever\": 275\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        219740,\n\t\t\t\t\"playtime_forever\": 24\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"appid\":
+        322330,\n\t\t\t\t\"playtime_forever\": 406\n\t\t\t}\n\t\t]\n\t\t\n\t}\n}"
+    http_version: 
+  recorded_at: Thu, 21 Jan 2016 06:43:27 GMT
+recorded_with: VCR 3.0.1
