@@ -20,14 +20,14 @@ class ResultsController < ApplicationController
     find_price(id)
 
     render json: {
-               id: id,
-               name: @name,
-               cost: @cost/100.0,
-               image: @image,
-               genre: @genre,
-               score: @score,
-               critic: @critic
-           }
+      id:     id,
+      name:   @name,
+      cost:   @cost / 100.0,
+      image:  @image,
+      genre:  @genre,
+      score:  @score,
+      critic: @critic
+    }
   end
 
   def find_price(id)
@@ -35,12 +35,12 @@ class ResultsController < ApplicationController
     response = Net::HTTP::get(url)
     game = JSON.load(response)["#{id}"]
     if game['data']
-      @name = game['data']['name'] if game['data']['name']
-      @cost = game['data']['price_overview']['initial'] if game['data']['price_overview']
-      @image =  game['data']['header_image'] if game['data']['header_image']
-      @genre =  game['data']['genres'].first['description'] if game['data']['genres']
+      @name  = game['data']['name']                        if game['data']['name']
+      @cost  = game['data']['price_overview']['initial']   if game['data']['price_overview']
+      @image = game['data']['header_image']                if game['data']['header_image']
+      @genre = game['data']['genres'].first['description'] if game['data']['genres']
       if game['data']['metacritic']
-        @score =  game['data']['metacritic']['score']
+        @score  = game['data']['metacritic']['score']
         @critic = game['data']['metacritic']['url']
       end
     end
