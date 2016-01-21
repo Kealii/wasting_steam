@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
-//= require scripts
 //= require handlebars-latest
+//= require jquery.easing
+//= require wow
+//= require scripts
 //= require_tree .
