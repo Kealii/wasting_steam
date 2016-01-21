@@ -1,4 +1,8 @@
-var wastedMoney = 0
+var wastedMoney = 0;
+
+var addWastedMoney = function addWastedMoney(newCost) {
+    wastedMoney = parseFloat((wastedMoney + newCost).toFixed(2))
+};
 
 var getDataForGames = function getDataForGames(gameIds) {
     var source   = $("#gameTemplate").html();
@@ -8,10 +12,10 @@ var getDataForGames = function getDataForGames(gameIds) {
     gameIds.forEach(function(value) {
 
         $.get("/results/"+value, function(data) {
-            wastedMoney += data.cost
-            $('#waste').text(wastedMoney)
+            addWastedMoney(data.cost);
+            $('#waste').text(wastedMoney);
 
             table.append(template(data))
         })
     })
-}
+};
