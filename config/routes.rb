@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post '/auth/steam/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/auth/failure',  to: 'sessions#failure'
+
+  get '/results/:id', to: 'results#price'
 end

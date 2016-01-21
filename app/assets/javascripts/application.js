@@ -13,4 +13,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require scripts
+//= require handlebars-latest
 //= require_tree .

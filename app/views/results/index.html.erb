@@ -6,10 +6,10 @@
       <p>When calculating your total waste, this app does not factor in games received as gifts, multi-game bundles, or games purchased on sale.</p>
     </div>
   </div>
-  <h1 class="text-center">Waste - <%= number_to_currency(@wasted_money / 100.0) %></h1>
-  <h2 class="text-center">Unplayed Games - <%= @names.count %></h2>
+  <h1 class="text-center">Waste - <span id="waste"></span></h1>
+  <h2 class="text-center">Unplayed Games - <%= @unplayed_ids.count %></h2>
   <br>
-  <table class="table table-condensed">
+  <table class="table table-condensed" id="games">
       <tr>
         <th></th>
         <th><p>Game</p></th>
@@ -17,14 +17,19 @@
         <th><p>Genre</p></th>
         <th><p>Metacritic</p></th>
       </tr>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= image_tag( game[1], size: '300x100' ) %></td>
-        <td><p><%= game[2] %></p></td>
-        <td><p><%= number_to_currency( game[3] / 100.0 ) %></p></td>
-        <td><p><%= game[4] %></p></td>
-        <td><p><%= link_to game[5], game[6] %></p></td>
-      </tr>
-    <% end %>
   </table>
 </div>
+
+<script type="text/x-handlebars-template" id="gameTemplate">
+  <tr>
+    <td><img src="{{image}}" width="300" height="100" /></td>
+    <td><p>{{name}}</p></td>
+    <td><p>{{cost}}</p></td>
+    <td><p>{{genre}}</p></td>
+    <td><p><a href="{{critic}}">{{score}}</a></p></td>
+  </tr>
+</script>
+
+<script>
+  getDataForGames(<%= @unplayed_ids %>)
+</script>

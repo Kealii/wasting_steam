@@ -7,3 +7,9 @@
 #topNav {
     background-color: #222;
 }
+
+#waste {
+  &::before {
+    content: '$';
+  }
+}

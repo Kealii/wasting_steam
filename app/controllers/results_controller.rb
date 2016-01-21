@@ -1,13 +1,7 @@
 class ResultsController < ApplicationController
   def index
-    if current_user
-      find_games
-      if @unplayed_ids
-        find_prices
-      end
-    end
+    find_games if current_user
   end
-
 
   def find_games
     @unplayed_ids = []
@@ -21,40 +15,43 @@ class ResultsController < ApplicationController
     end
   end
 
-  def find_prices
-    @names        = []
-    @images       = []
-    @cost         = []
-    @genres       = []
-    @scores       = []
-    @critics      = []
-    @wasted_money = 0
-    @unplayed_ids.each do |id|
-      url      = URI.parse("https://store.steampowered.com/api/appdetails/?appids=#{id}")
-      response = Net::HTTP::get(url)
-      game = JSON.load(response)["#{id}"]
-      if game['data']
-        if game['data']['name']
-          @names << game['data']['name']
-        end
-        if game['data']['price_overview']
-          @wasted_money += game['data']['price_overview']['initial']
-          @cost << game['data']['price_overview']['initial']
-        end
-        if game['data']['header_image']
-          @images << game['data']['header_image']
-        end
-        if game['data']['genres']
-          @genres << game['data']['genres'].first['description']
-        end
-        if game['data']['metacritic']
-          @scores << game['data']['metacritic']['score']
-          @critics << game['data']['metacritic']['url']
-        end
-      end
-    end
-    @games = @unplayed_ids.zip(@images, @names, @cost, @genres, @scores, @critics)
+  def price
+    id = params[:id]
+    find_price(id)
+
+    render json: {
+               id: id,
+               name: @name,
+               cost: @cost/100.0,
+               image: @image,
+               genre: @genre,
+               score: @score,
+               critic: @critic
+           }
   end
 
+  def find_price(id)
+    url      = URI.parse("https://store.steampowered.com/api/appdetails/?appids=#{id}")
+    response = Net::HTTP::get(url)
+    game = JSON.load(response)["#{id}"]
+    if game['data']
+      if game['data']['name']
+        @name = game['data']['name']
+      end
+      if game['data']['price_overview']
+        @cost = game['data']['price_overview']['initial']
+      end
+      if game['data']['header_image']
+        @image =  game['data']['header_image']
+      end
+      if game['data']['genres']
+        @genre =  game['data']['genres'].first['description']
+      end
+      if game['data']['metacritic']
+        @score =  game['data']['metacritic']['score']
+        @critic = game['data']['metacritic']['url']
+      end
+    end
+  end
 end
 
