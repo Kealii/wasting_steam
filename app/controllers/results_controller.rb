@@ -35,18 +35,10 @@ class ResultsController < ApplicationController
     response = Net::HTTP::get(url)
     game = JSON.load(response)["#{id}"]
     if game['data']
-      if game['data']['name']
-        @name = game['data']['name']
-      end
-      if game['data']['price_overview']
-        @cost = game['data']['price_overview']['initial']
-      end
-      if game['data']['header_image']
-        @image =  game['data']['header_image']
-      end
-      if game['data']['genres']
-        @genre =  game['data']['genres'].first['description']
-      end
+      @name = game['data']['name'] if game['data']['name']
+      @cost = game['data']['price_overview']['initial'] if game['data']['price_overview']
+      @image =  game['data']['header_image'] if game['data']['header_image']
+      @genre =  game['data']['genres'].first['description'] if game['data']['genres']
       if game['data']['metacritic']
         @score =  game['data']['metacritic']['score']
         @critic = game['data']['metacritic']['url']
