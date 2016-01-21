@@ -3,9 +3,10 @@ var count = 0;
 
 var addWastedMoney = function addWastedMoney(newCost, totalGames) {
     wastedMoney = parseFloat((wastedMoney + newCost).toFixed(2))
+    $('#waste').text(wastedMoney);
     count += 1;
     if(count == totalGames) {
-        $('#waste').text(wastedMoney);
+        $('#placeholder').remove();
     }
 };
 
