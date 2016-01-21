@@ -3,7 +3,7 @@ var wastedMoney = 0
 var getDataForGames = function getDataForGames(gameIds) {
     var source   = $("#gameTemplate").html();
     var template = Handlebars.compile(source);
-    var table = $('#games tbody')
+    var table = $('#games tbody');
 
     gameIds.forEach(function(value) {
 
