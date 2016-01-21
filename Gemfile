@@ -27,5 +27,5 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'skylight'
+  gem 'skylight', '~> 0.10.2'
 end
