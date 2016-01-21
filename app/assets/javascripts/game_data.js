@@ -1,7 +1,12 @@
 var wastedMoney = 0;
+var count = 0;
 
-var addWastedMoney = function addWastedMoney(newCost) {
+var addWastedMoney = function addWastedMoney(newCost, totalGames) {
     wastedMoney = parseFloat((wastedMoney + newCost).toFixed(2))
+    count += 1;
+    if(count == totalGames) {
+        $('#waste').text(wastedMoney);
+    }
 };
 
 var getDataForGames = function getDataForGames(gameIds) {
@@ -11,9 +16,7 @@ var getDataForGames = function getDataForGames(gameIds) {
 
     gameIds.forEach(function(value) {
         $.get("/results/"+value, function(data) {
-            addWastedMoney(data.cost);
-            $('#waste').text(wastedMoney);
-
+            addWastedMoney(data.cost, gameIds.length);
             table.append(template(data))
         })
     })
